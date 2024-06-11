@@ -1,8 +1,8 @@
 #! /bin/bash
 
-bash bash/train.sh shelly fernvase
-bash bash/train.sh shelly horse
-bash bash/train.sh shelly khady
-bash bash/train.sh shelly kitten
-bash bash/train.sh shelly pug
-bash bash/train.sh shelly woolly
+bash bash/train.sh shelly fernvase white 1
+bash bash/train.sh shelly horse white 1
+bash bash/train.sh shelly khady white 1
+bash bash/train.sh shelly kitten white 1
+bash bash/train.sh shelly pug white 1
+bash bash/train.sh shelly woolly white 1
