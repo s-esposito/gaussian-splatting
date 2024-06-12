@@ -23,8 +23,9 @@ echo "DATA_PATH: $DATA_PATH"
 
 # RUN_ID format: YYYY-MM-DD-HHMMSS
 RUN_ID=$(date +'%Y-%m-%d-%H%M%S')
+EXP_NAME="base"
 # RUN_ID="2024-06-11-123117"  # $(date +'%Y-%m-%d-%H%M%S')
-OUTPUT_PATH=$RUNS_PATH/3dgs/$SCENE_NAME/$RUN_ID
+OUTPUT_PATH=$RUNS_PATH/3dgs/$EXP_NAME/$SCENE_NAME/$RUN_ID
 echo "OUTPUT_PATH: $OUTPUT_PATH"
 
 python train.py -s $DATA_PATH/$DATASET_NAME/$SCENE_NAME --eval $BG_FLAG $RES_SCALE_FLAG --model_path $OUTPUT_PATH --iterations 30000 --save_iterations 30000
