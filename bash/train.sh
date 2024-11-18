@@ -21,11 +21,28 @@ DATA_PATH=$(grep 'datasets:' config/paths_config.cfg | sed 's/[^/]*//; s/[\{\} ,
 echo "RUNS_PATH: $RUNS_PATH"
 echo "DATA_PATH: $DATA_PATH"
 
-# RUN_ID format: YYYY-MM-DD-HHMMSS
-RUN_ID=$(date +'%Y-%m-%d-%H%M%S')
 EXP_NAME="base"
+
+# get latest RUN_ID in the directory
+OUTPUT_PATH=$RUNS_PATH/3dgs/$EXP_NAME/$SCENE_NAME
+
+# # EXISTING: check if the directory exists
+# if [ ! -d "$OUTPUT_PATH" ]; then
+#     echo "Directory $OUTPUT_PATH does not exist. Exiting..."
+#     exit 1
+# fi
+# # find all folders in OUTPUT_PATH and sort them by name
+# FOLDERS_IN_OUTPUT_PATH=$(find $OUTPUT_PATH -maxdepth 1 -mindepth 1 -type d | sort)
+# # echo "FOLDERS_IN_OUTPUT_PATH: $FOLDERS_IN_OUTPUT_PATH"
+# # get the last folder name
+# OUTPUT_PATH=$(echo "$FOLDERS_IN_OUTPUT_PATH" | tail -n 1)
+
+# NEW RUN_ID: YYYY-MM-DD-HHMMSS
+RUN_ID=$(date +'%Y-%m-%d-%H%M%S')
+echo "RUN_ID: $RUN_ID"
+
 # RUN_ID="2024-06-11-123117"  # $(date +'%Y-%m-%d-%H%M%S')
-OUTPUT_PATH=$RUNS_PATH/3dgs/$EXP_NAME/$SCENE_NAME/$RUN_ID
+OUTPUT_PATH=$OUTPUT_PATH/$RUN_ID
 echo "OUTPUT_PATH: $OUTPUT_PATH"
 
 python train.py -s $DATA_PATH/$DATASET_NAME/$SCENE_NAME --eval $BG_FLAG $RES_SCALE_FLAG --model_path $OUTPUT_PATH --iterations 30000 --save_iterations 30000
